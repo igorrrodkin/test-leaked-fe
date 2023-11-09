@@ -1,37 +1,6 @@
 name: Reusable CI
 on:
   workflow_call:
-    inputs:
-      DOKKU_APP_NAME:
-        required: true
-        type: string
-      SSH_USER:
-        required: true
-        type: string
-      DOKKU_IP:
-        required: true
-        type: string
-      DEFAULT_DAILY_QUOTA:
-        required: true
-        type: number
-      HANDLE_PURCHASE_ORDER_CONCURRENCY:
-        required: true
-        type: number
-      PLATFORM_RATE_LIMIT:
-        required: true
-        type: number
-      API_RATE_LIMIT:
-        required: true
-        type: number
-      PLATFORM_RATE_LIMIT_PER_CLIENT:
-        required: true
-        type: number
-      RATE_LIMIT_PER_APIKEY:
-        required: true
-        type: number
-      STAGE:
-        required: true
-        type: string
     secrets:
       AWS_ACCESS_KEY_ID:
         required: true
