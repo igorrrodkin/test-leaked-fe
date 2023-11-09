@@ -9,7 +9,7 @@ jobs:
     name: PROD pipeline
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
-    env:
+    secrets:
       AWS_ACCESS: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       STRIPE_PK: ${{ secrets.STRIPE_PK_MAIN }}
@@ -35,7 +35,7 @@ jobs:
     name: DEV pipeline
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/dev'
-    env:
+    secrets:
       AWS_ACCESS: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       STRIPE_PK: ${{ secrets.STRIPE_PK_DEV }}
