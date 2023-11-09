@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     uses: ./.github/workflows/reusable.yml
-    with:
     secrets:
       AWS_ACCESS: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -27,7 +26,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/dev'
     uses: ./.github/workflows/reusable.yml
-    with:
     secrets:
       AWS_ACCESS: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
