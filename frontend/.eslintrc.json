@@ -1,0 +1,77 @@
+{
+	"extends": ["airbnb", "airbnb-typescript"],
+	"parserOptions": {
+		"project": "./tsconfig.json"
+	},
+	"env": {
+		"browser": true,
+		"node": true
+	},
+	"plugins": ["simple-import-sort", "no-relative-import-paths"],
+	"rules": {
+		"@typescript-eslint/return-await": "warn",
+		"@typescript-eslint/no-use-before-define": ["error", {
+			"variables": false
+		}],
+		"consistent-return": ["off", {
+			"checkArrowFunctions": false
+		}],
+		"no-nested-ternary": "off",
+		"no-case-declarations": "off",
+		"no-underscore-dangle": "off",
+		"linebreak-style": "off",
+		"import/extensions": "off",
+		"react/prop-types": "off",
+		"react/no-array-index-key": "off",
+		"react/jsx-props-no-spreading": "off",
+		"react/react-in-jsx-scope": "off",
+		"react/function-component-definition": "off",
+		"import/prefer-default-export": "off",
+		"class-methods-use-this": "off",
+		"react/jsx-no-useless-fragment": "off",
+		"react/require-default-props": ["error", {
+			"ignoreFunctionalComponents": true
+		}],
+		"no-console": ["error", {
+			"allow": ["error", "warn", "info"]
+		}],
+		"max-len": [
+			"error",
+			{
+				"ignoreComments": true,
+				"ignoreUrls": true,
+				"ignoreStrings": true,
+				"ignoreTemplateLiterals": true,
+				"code": 120
+			}
+		],
+    "no-relative-import-paths/no-relative-import-paths": [
+      "error",
+			{
+				"rootDir": "src",
+				"prefix": "@"
+			}
+    ],
+		"simple-import-sort/imports": ["error", {
+      "groups": [
+        ["^react", "^@?\\w"],
+        ["^@/api/(.*)$"],
+        ["^@/styles/(.*)$"],
+        ["^@/assets/(.*)$"],
+        ["^@/components/common/icons(.*)$"],
+        ["^@/components/common(.*)$"],
+        ["^@/components/(.*)$"],
+        ["^@/pages/(.*)$"],
+        ["^@/store/actions/(.*)$"],
+        ["^@/store/reducers/(.*)$"],
+        ["^@/store/selectors/(.*)$"],
+        ["^@/store/(.*)$"],
+        ["^@/interfaces/(.*)$"],
+        ["^@/hooks/(.*)$"],
+        ["^@/utils/(.*)$"],
+        ["^@/(.*)$"],
+        ["[./]"]
+      ]
+    }]
+	}
+}
