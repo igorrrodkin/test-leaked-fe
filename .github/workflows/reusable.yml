@@ -50,6 +50,16 @@ jobs:
           echo "STAGE=\"${{ secrets.STAGE }}\"" >> .env
           echo "DOMAIN=\"${{ secrets.DOMAIN }}\"" >> .env
           echo "HOSTED_ZONE=\"${{ secrets.HOSTED_ZONE }}\"" >> .env
+      - uses: actions/checkout@v2
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: 'ap-southeast-2'
+      - name: NMP Install
+        run: npm install
+      - name: AWS Deploy Lambda
+        run: npm run deploy:$STAGE
 
       # - name: Install Chromium layers
       #   run: |
