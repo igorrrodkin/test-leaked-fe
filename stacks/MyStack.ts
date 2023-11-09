@@ -6,10 +6,10 @@ export function ExampleStack({ stack }: StackContext) {
     buildCommand: 'npm i && npm run build',
     errorPage: 'redirect_to_index_page',
     path: './frontend',
-    customDomain: {
-      domainName: process.env.DOMAIN!,
-      hostedZone: process.env.HOSTED_ZONE
-    },
+    // customDomain: {
+    //   domainName: process.env.DOMAIN!,
+    //   hostedZone: process.env.HOSTED_ZONE
+    // },
     environment: {
       STRIPE_PK: process.env.STRIPE_PK,
       SENTRY_DSN_FE: process.env.SENTRY_DSN_FE,
