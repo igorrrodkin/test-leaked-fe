@@ -1,0 +1,89 @@
+name: Reusable CI
+on:
+  workflow_call:
+    inputs:
+      DOKKU_APP_NAME:
+        required: true
+        type: string
+      SSH_USER:
+        required: true
+        type: string
+      DOKKU_IP:
+        required: true
+        type: string
+      DEFAULT_DAILY_QUOTA:
+        required: true
+        type: number
+      HANDLE_PURCHASE_ORDER_CONCURRENCY:
+        required: true
+        type: number
+      PLATFORM_RATE_LIMIT:
+        required: true
+        type: number
+      API_RATE_LIMIT:
+        required: true
+        type: number
+      PLATFORM_RATE_LIMIT_PER_CLIENT:
+        required: true
+        type: number
+      RATE_LIMIT_PER_APIKEY:
+        required: true
+        type: number
+      STAGE:
+        required: true
+        type: string
+    secrets:
+      AWS_ACCESS_KEY_ID:
+        required: true
+      AWS_SECRET_ACCESS_KEY:
+        required: true
+jobs:
+  build:
+    name: Reusable pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set vars from file
+        run: | 
+          echo "AWS_ACCESS_KEY_ID=\"${{ secrets.AWS_ACCESS_KEY_ID }}\"" >> .env
+          echo "AWS_SECRET_ACCESS_KEY=\"${{ secrets.AWS_SECRET_ACCESS_KEY }}\"" >> .env
+          echo "STAGE=\"${{ secrets.STAGE }}\"" >> .env
+          echo "DOMAIN=\"${{ secrets.DOMAIN }}\"" >> .env
+          echo "HOSTED_ZONE=\"${{ secrets.HOSTED_ZONE }}\"" >> .env
+
+      # - name: Install Chromium layers
+      #   run: |
+      #     cd layers/chromium/nodejs
+      #     npm i
+      # - name: Install Lambdas dependencies
+      #   run: |
+      #     cd src/lambdas/pdf-generator-layers
+      #     npm i
+      #     cd ../pdf-parser-lambda
+      #     npm i
+      # - name: Configure AWS Credentials
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     aws-region: ${{ secrets.AWS_REGION }}
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      # - name: Install dependencies
+      #   run: yarn install
+      # - name: Deploy AWS services
+      #   run: yarn sst-deploy:${{ inputs.STAGE }}
+      # - name: Create SSH key's
+      #   run: |
+      #     mkdir -p ~/.ssh/
+      #     echo "${{ secrets.SSH_PRIVATE_KEY }}" > ../private.key
+      #     sudo chmod 600 ../private.key
+      #   shell: bash
+      # - name: Yarn build
+      #   run: |
+      #     yarn install
+      #     yarn build 
+      # - name: Build the Docker image
+      #   run: docker buildx build -t app/${{ inputs.DOKKU_APP_NAME }}:latest .
+      # - name: Save Docker
+      #   run: docker image save app/${{ inputs.DOKKU_APP_NAME }}:latest | bzip2 | ssh -i ${{ github.workspace }}/../private.key -o StrictHostKeyChecking=no ${{ inputs.SSH_USER }}@${{ inputs.DOKKU_IP }} "docker load"
+      # - name: Dokku create, deploy and tag
+      #   run: ssh -i ${{ github.workspace }}/../private.key -o StrictHostKeyChecking=no ${{ inputs.SSH_USER }}@${{ inputs.DOKKU_IP }} "dokku git:from-image ${{ inputs.DOKKU_APP_NAME }} app/${{ inputs.DOKKU_APP_NAME }} || true && dokku cleanup && dokku ps:rebuild ${{ inputs.DOKKU_APP_NAME }}"
