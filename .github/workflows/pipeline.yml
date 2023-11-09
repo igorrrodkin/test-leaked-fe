@@ -10,8 +10,8 @@ jobs:
     if: github.ref == 'refs/heads/main'
     uses: ./.github/workflows/reusable.yml
     secrets:
-      AWS_ACCESS: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       STRIPE_PK: ${{ secrets.STRIPE_PK_MAIN }}
       SENTRY_DSN_FE: ${{ secrets.SENTRY_DSN_FE }}
       GOOGLE_API_KEY: ${{secrets.GOOGLE_API_KEY_MAIN }}
