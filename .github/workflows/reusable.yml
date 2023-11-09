@@ -17,8 +17,6 @@ jobs:
           echo "AWS_ACCESS_KEY_ID=\"${{ secrets.AWS_ACCESS_KEY_ID }}\"" >> .env
           echo "AWS_SECRET_ACCESS_KEY=\"${{ secrets.AWS_SECRET_ACCESS_KEY }}\"" >> .env
           echo "STAGE=\"${{ secrets.STAGE }}\"" >> .env
-          echo "DOMAIN=\"${{ secrets.DOMAIN }}\"" >> .env
-          echo "HOSTED_ZONE=\"${{ secrets.HOSTED_ZONE }}\"" >> .env
       - uses: actions/checkout@v2
       - uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -28,7 +26,7 @@ jobs:
       - name: NMP Install
         run: npm install
       - name: AWS Deploy Lambda
-        run: npm run deploy:$STAGE
+        run: npm run deploy:main
 
       # - name: Install Chromium layers
       #   run: |
