@@ -19,20 +19,4 @@ jobs:
       URL_API: ${{ secrets.URL_API_MAIN }}
       STAGE: main
       DOMAIN: qa.envs.altscorpdev.com
-      HOSTED_ZONE: altscorpdev.com      
-  dev:
-    name: DEV pipeline
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/dev'
-    uses: ./.github/workflows/reusable.yml
-    secrets:
-      AWS_ACCESS: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      STRIPE_PK: ${{ secrets.STRIPE_PK_DEV }}
-      SENTRY_DSN_FE: ${{ secrets.SENTRY_DSN_FE }}
-      GOOGLE_API_KEY: ${{secrets.GOOGLE_API_KEY_MAIN }}
-      INTERCOM_APP_ID: ${{ secrets.INTERCOM_APP_ID_DEV }}
-      URL_API: ${{ secrets.URL_API_DEV }}
-      STAGE: dev
-      DOMAIN: dev.envs.altscorpdev.com
       HOSTED_ZONE: altscorpdev.com
