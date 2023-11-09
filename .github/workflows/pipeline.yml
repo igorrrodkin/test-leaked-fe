@@ -7,7 +7,6 @@ on:
 jobs:
   main:
     name: PROD pipeline
-    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     uses: ./.github/workflows/reusable.yml
     secrets:
